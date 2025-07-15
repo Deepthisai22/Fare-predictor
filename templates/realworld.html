@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-World Fare Estimator</title>
+</head>
+<body>
+    <h2>🌍 Estimate Fare Between Any Two Locations</h2>
+    <form method="POST">
+        Pickup Location: <input type="text" name="pickup"><br><br>
+        Dropoff Location: <input type="text" name="dropoff"><br><br>
+        <input type="submit" value="Estimate Fare">
+    </form>
+
+    {% if result %}
+        {% if result is string %}
+            <p style="color:red;">{{ result }}</p>
+        {% else %}
+            <h3>Estimated Fare</h3>
+            <ul>
+                <li><b>Pickup:</b> {{ result.pickup }}</li>
+                <li><b>Dropoff:</b> {{ result.dropoff }}</li>
+                <li><b>Distance:</b> {{ result.distance }} km</li>
+                <li><b>Duration:</b> {{ result.duration }} minutes</li>
+                <li><b>Estimated Fare:</b> ₹{{ result.fare }}</li>
+            </ul>
+        {% endif %}
+    {% endif %}
+
+    <br>
+    <a href="/">← Go Back to NYC Prediction</a>
+</body>
+</html>

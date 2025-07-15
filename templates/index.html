@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NYC Taxi Fare Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #ccc;
+            max-width: 400px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+        }
+        .link {
+            margin-top: 30px;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🚕 NYC Taxi Fare Predictor</h1>
+
+<form method="POST">
+    <label>Trip Distance (miles):</label>
+    <input type="number" name="trip_distance" step="0.01" required>
+
+    <label>Passenger Count:</label>
+    <input type="number" name="passenger_count" required>
+
+    <label>Pickup Location ID:</label>
+    <input type="number" name="PULocationID" required>
+
+    <label>Dropoff Location ID:</label>
+    <input type="number" name="DOLocationID" required>
+
+    <label>Pickup Hour (0-23):</label>
+    <input type="number" name="hour" min="0" max="23" required>
+
+    <label>Day of Week (0=Mon, ..., 6=Sun):</label>
+    <input type="number" name="dayofweek" min="0" max="6" required>
+
+    <label>Is Weekend (1=yes, 0=no):</label>
+    <input type="number" name="is_weekend" min="0" max="1" required>
+
+    <label>Is Peak Hour (1=yes, 0=no):</label>
+    <input type="number" name="is_peak_hour" min="0" max="1" required>
+
+    <label>Ride Duration (minutes):</label>
+    <input type="number" name="ride_duration_min" step="0.1" required>
+
+    <label>Dropoff Hour (0-23):</label>
+    <input type="number" name="dropoff_hour" min="0" max="23" required>
+
+    <label>Temperature (°C):</label>
+    <input type="number" name="temperature_2m" step="0.1" required>
+
+    <label>Precipitation (mm):</label>
+    <input type="number" name="precipitation" step="0.1" required>
+
+    <label>Wind Speed (m/s):</label>
+    <input type="number" name="wind_speed_10m" step="0.1" required>
+
+    <input type="submit" value="Predict Fare">
+</form>
+
+{% if prediction %}
+    <div class="result">
+        💵 Predicted Fare: ${{ prediction }}
+    </div>
+{% endif %}
+
+<div class="link">
+    <a href="/realworld">🌍 Try Real-World Fare Estimator</a>
+</div>
+
+</body>
+</html>
+
