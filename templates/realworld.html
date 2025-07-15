@@ -1,32 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Real-World Fare Estimator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 40px;
+        }
+        h2 {
+            color: #333;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #ccc;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .result, .error {
+            background: #fff;
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 0 8px #ccc;
+            max-width: 400px;
+        }
+        .error {
+            color: red;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
+
     <h2>🌍 Estimate Fare Between Any Two Locations</h2>
+
     <form method="POST">
-        Pickup Location: <input type="text" name="pickup"><br><br>
-        Dropoff Location: <input type="text" name="dropoff"><br><br>
+        <label for="pickup">Pickup Location:</label>
+        <input type="text" name="pickup" id="pickup" required>
+
+        <label for="dropoff">Dropoff Location:</label>
+        <input type="text" name="dropoff" id="dropoff" required>
+
         <input type="submit" value="Estimate Fare">
     </form>
 
     {% if result %}
         {% if result is string %}
-            <p style="color:red;">{{ result }}</p>
+            <div class="error">{{ result }}</div>
         {% else %}
-            <h3>Estimated Fare</h3>
-            <ul>
-                <li><b>Pickup:</b> {{ result.pickup }}</li>
-                <li><b>Dropoff:</b> {{ result.dropoff }}</li>
-                <li><b>Distance:</b> {{ result.distance }} km</li>
-                <li><b>Duration:</b> {{ result.duration }} minutes</li>
-                <li><b>Estimated Fare:</b> ₹{{ result.fare }}</li>
-            </ul>
+            <div class="result">
+                <h3>Estimated Fare</h3>
+                <p><b>Pickup:</b> {{ result.pickup }}</p>
+                <p><b>Dropoff:</b> {{ result.dropoff }}</p>
+                <p><b>Distance:</b> {{ result.distance }} km</p>
+                <p><b>Duration:</b> {{ result.duration }} minutes</p>
+                <p><b>Estimated Fare:</b> ₹{{ result.fare }}</p>
+            </div>
         {% endif %}
     {% endif %}
 
-    <br>
     <a href="/">← Go Back to NYC Prediction</a>
+
 </body>
 </html>
+
